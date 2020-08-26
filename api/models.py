@@ -36,3 +36,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+
+class Naver(models.Model):
+    user = models.OneToOneField(User,
+                                related_name='naver',
+                                on_delete=models.CASCADE)
+    birthdate = models.DateField()
+    admission_date = models.DateField()
+    job_role = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.user.email
